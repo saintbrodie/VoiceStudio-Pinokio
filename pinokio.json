@@ -1,0 +1,7 @@
+{
+  "title": "VoiceStudio",
+  "description": "Local voice cloning, dubbing, transcription, and audiobooks. Windows/Linux x64 and Apple Silicon macOS.",
+  "icon": "icon.svg",
+  "platform": ["win32", "linux", "darwin"],
+  "arch": ["x64", "arm64"]
+}
