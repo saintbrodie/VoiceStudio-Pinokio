@@ -17,6 +17,11 @@ Start is a manual action while VoiceStudio is stopped. Completing Diagnostics or
 
 This launcher uses the upstream web build served by its Python backend. Native Electron features such as global dictation shortcuts, system text insertion, and desktop window controls require the separate upstream desktop app.
 
+**Browser audio download fix:** In the Pinokio WebUI, **Save as…** on **Latest take** and **Recent takes** downloads the generated WAV using the browser. The upstream Electron-only button otherwise does nothing in a browser. During **Install**, **Reinstall**, or **Update**, `scripts/build-web-with-browser-download.js` temporarily patches that button to use VoiceStudio's existing authenticated API and browser-download helper, runs `build:web`, and restores the upstream source even if the build fails. This means the installed upstream Git tree stays clean for `git pull --ff-only`. The workaround fails with an explanatory error if upstream changes the affected component, rather than silently breaking the button. Remove it once upstream adds browser downloads natively. The original WAVs are also available under `data/outputs/`.
+
+Launcher workaround tests: `node --test tests/browser-download.test.js`.
+
+
 ## Hardware and storage
 
 Designed for Windows/Linux x64 and Apple Silicon macOS. Intel macOS and Windows ARM are not supported by this launcher. NVIDIA machines use upstream's automatic CUDA detection; machines without NVIDIA use CPU wheels. Apple Silicon uses native PyTorch/MPS. Dependencies and CUDA builds can require several GB, plus disk space and memory for the models you choose. Pinokio's AI bundle supplies shared prerequisites; upstream setup handles its platform compatibility fixes.

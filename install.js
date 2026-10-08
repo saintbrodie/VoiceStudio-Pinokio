@@ -21,7 +21,7 @@ module.exports = {
         message: [
           '"{{which("bun")}}" install --frozen-lockfile',
           '"{{which("bun")}}" run setup:api',
-          '"{{which("bun")}}" run build:web'
+          '"{{which("bun")}}" ../scripts/build-web-with-browser-download.js'
         ]
       }
     },
