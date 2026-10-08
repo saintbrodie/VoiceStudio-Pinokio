@@ -73,7 +73,7 @@ function buildWeb({ appDir = path.resolve(__dirname, '..', 'app'), runBuild } = 
 
 module.exports = { patchSaveButton, buildWeb, SAVE_BUTTON };
 
-if (require.main === module) {
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
   try {
     buildWeb();
   } catch (error) {
